@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VisionGuard AI</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+<div class="logo">
+
+🛡
+
+</div>
+
+<h1>VisionGuard AI</h1>
+
+<p class="subtitle">
+Smart Medicine Package Tampering Detection using Deep Learning
+</p>
+
+<div class="features">
+
+<div class="feature">
+
+🤖 AI Powered
+
+</div>
+
+<div class="feature">
+
+⚡ Fast Detection
+
+</div>
+
+<div class="feature">
+
+🛡 Safe Inspection
+
+</div>
+
+</div>
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+
+<div class="upload-box">
+
+<input type="file" name="image" required>
+
+</div>
+
+<button type="submit">
+
+🔍 Analyze Package
+
+</button>
+
+</form>
+
+{% if prediction %}
+
+<div class="result-card">
+
+<h2>Prediction</h2>
+
+<img src="{{ url_for('static', filename='uploads/' + image) }}">
+
+{% if prediction=="Damaged" %}
+
+<h1 class="danger">
+
+🔴 DAMAGED
+
+</h1>
+
+{% else %}
+
+<h1 class="safe">
+
+🟢 INTACT
+
+</h1>
+
+{% endif %}
+
+<div class="confidence">
+
+<div class="progress">
+
+<div class="progress-fill"
+
+style="width: {{ confidence }}%;">
+
+</div>
+
+</div>
+
+<h3>Confidence : {{ confidence }}%</h3>
+
+</div>
+
+<div class="recommend">
+
+{% if prediction=="Damaged" %}
+
+⚠ Recommendation
+
+<br><br>
+
+Do NOT consume this medicine.
+
+Packaging appears damaged.
+
+{% else %}
+
+✅ Recommendation
+
+<br><br>
+
+Medicine package appears safe.
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

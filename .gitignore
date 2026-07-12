@@ -1,0 +1,18 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code settings
+.vscode/
+
+# Temporary uploaded images
+static/uploads/*
+
+# Temporary prediction results
+static/results/*
+
+# macOS
+.DS_Store
